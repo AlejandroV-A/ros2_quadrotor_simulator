@@ -78,6 +78,41 @@ This document contains the interface requirements for the ROS 2 Quadrotor Simula
 
 **Status:** Proposed
 
+### REQ-IR-203: OptiTrack Interface
+
+**Description:** The simulator must provide:
+1. Interface compatibility with OptiTrack's NatNet protocol (or equivalent ROS 2 bridge)
+2. Topics for streaming motion capture data at configurable frame rates (100-360 Hz)
+3. Separate topics for:
+   - Ground truth position and attitude data for recording/visualization
+   - Raw motion capture markers data (if needed for advanced applications)
+
+**Rationale:** OptiTrack integration is essential for matching the reference testbed setup.
+
+**Verification Method:** Test - Verify compatibility with OptiTrack data formats and protocols.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-IR-204: Measurement Data Segregation
+
+**Description:** The system must provide clearly separated interfaces for:
+1. OptiTrack measurements: `/optitrack/pose`, `/optitrack/markers` (ground truth)
+2. IMU measurements: `/quadrotor/sensors/imu` (onboard control)
+3. Camera data: `/quadrotor/sensors/camera` (optional)
+4. GPS data: `/quadrotor/sensors/gps` (optional)
+
+Each interface must properly identify its data source and intended use through appropriate metadata and documentation.
+
+**Rationale:** Clear separation of measurement sources prevents confusion and ensures proper data usage.
+
+**Verification Method:** Inspection - Review interface definitions and documentation.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
 ## User Interfaces
 
 ### REQ-IR-301: Command Line Interface
@@ -177,5 +212,56 @@ This document contains the interface requirements for the ROS 2 Quadrotor Simula
 **Verification Method:** Test - Verify data can be exported and used in analysis tools.
 
 **Priority:** Must-have
+
+**Status:** Proposed
+
+## Research Data Interfaces
+
+### REQ-IR-601: Control Algorithm API
+
+**Description:** The simulator must provide a well-documented API for integrating custom control algorithms with:
+- Base classes for both C++ and Python controllers
+- Standard methods for state observation and control input
+- Hooks for initialization and cleanup
+- Access to simulator parameters and configurations
+
+**Rationale:** Researchers need a clear and consistent way to implement their control algorithms.
+
+**Verification Method:** Test - Verify sample controllers in both C++ and Python.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-IR-602: Scientific Data Formats
+
+**Description:** The simulator must support common scientific data formats:
+- Input: CSV, MAT, NPY/NPZ, YAML
+- Output: CSV, HDF5, MAT, ROS bags
+- Plot export: PDF, PNG, SVG with LaTeX-compatible labels
+- Video export: MP4, AVI with configurable codecs and quality
+
+**Rationale:** Integration with scientific tools and publication workflows is essential.
+
+**Verification Method:** Test - Verify all format conversions work correctly.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-IR-603: External Tool Integration
+
+**Description:** The simulator must provide interfaces for common research tools:
+- Python scientific stack (NumPy, SciPy, Pandas)
+- Popular optimization frameworks
+- Common plotting libraries (Matplotlib, Plotly)
+
+Additionally, the system should be designed with potential MATLAB/Simulink integration in mind, but this is not a tested requirement due to licensing constraints.
+
+**Rationale:** Researchers often use external tools for analysis and visualization. While MATLAB/Simulink integration might be valuable, it cannot be a core requirement due to its proprietary nature and licensing requirements.
+
+**Verification Method:** Test - Verify integration with each supported open-source tool. MATLAB/Simulink integration is considered optional and not part of the verification requirements.
+
+**Priority:** Should-have (Open-source tool integration), Could-have (MATLAB/Simulink integration)
 
 **Status:** Proposed

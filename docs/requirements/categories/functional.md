@@ -18,9 +18,9 @@ This document contains the functional requirements for the ROS 2 Quadrotor Simul
 
 ### REQ-FR-102: Real-time Operation
 
-**Description:** The simulator must operate in real-time, with the ability to maintain a stable simulation frequency matching the hardware's control loop frequency (1000Hz for LLP, 100Hz for HLP).
+**Description:** The simulator must operate in real-time with high precision, maintaining a stable simulation frequency matching the hardware's control loop frequency (1000Hz for LLP, 100Hz for HLP). The system should support pausing, resuming, and running slower than real-time when needed for debugging.
 
-**Rationale:** Real-time operation is essential for the simulator to be used as a drop-in replacement for the real hardware.
+**Rationale:** Real-time operation is essential for the simulator to be used as a drop-in replacement for the real hardware, with debugging capabilities for development.
 
 **Verification Method:** Test - Measure execution timing and jitter under various loads.
 
@@ -191,5 +191,151 @@ This document contains the functional requirements for the ROS 2 Quadrotor Simul
 **Verification Method:** Test - Verify that parameter changes affect simulator behavior as expected.
 
 **Priority:** Should-have
+
+**Status:** Proposed
+
+## Research Integration
+
+### REQ-FR-701: Control Algorithm Interface
+
+**Description:** The system must provide a standardized interface for researchers to implement and test their control algorithms, supporting both C++ and Python implementations.
+
+**Rationale:** Easy integration of custom control algorithms is essential for research use.
+
+**Verification Method:** Test - Verify custom controllers can be loaded and executed correctly.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-702: Research Data Input
+
+**Description:** The system must support importing trajectory data and control parameters from common research formats including CSV, MAT files, NumPy arrays, and YAML configurations.
+
+**Rationale:** Researchers need to easily load their experimental data and parameters.
+
+**Verification Method:** Test - Verify data can be imported from all supported formats.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-703: Research Data Output
+
+**Description:** The system must provide comprehensive data logging capabilities in research-friendly formats (CSV, HDF5, ROS bags) with configurable sampling rates and automatic timestamping.
+
+**Rationale:** Data collection is critical for research publications and analysis.
+
+**Verification Method:** Test - Verify all data formats can be correctly generated and read.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-704: Visualization and Media Generation
+
+**Description:** The system must support generating publication-quality visualizations and video recordings of simulations, including:
+- State plots with LaTeX-compatible labels
+- 3D trajectory visualizations
+- High-quality video recording with configurable framerates
+- Real-time metric plotting
+
+**Rationale:** Visual results are essential for publications and presentations.
+
+**Verification Method:** Demonstration - Show generation of various visualization types.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-705: Parameter Studies
+
+**Description:** The system must provide tools for automated parameter sweeps and batch simulations, including:
+- Parameter range definition in YAML
+- Parallel execution of multiple simulations
+- Automated data collection and organization
+- Basic statistical analysis of results
+
+**Rationale:** Parameter studies are common in control systems research.
+
+**Verification Method:** Test - Verify parameter sweep functionality and result collection.
+
+**Priority:** Should-have
+
+**Status:** Proposed
+
+### REQ-FR-706: Performance Metrics
+
+**Description:** The system must automatically compute and log common control performance metrics including:
+- Tracking error statistics
+- Control effort metrics
+- Stability measures
+- Custom metric definition capability
+
+**Rationale:** Standardized metrics enable comparison of different control approaches.
+
+**Verification Method:** Test - Verify metric computation accuracy and logging.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+## Position and Attitude Tracking
+
+### REQ-FR-801: OptiTrack Integration
+
+**Description:** The simulator must support OptiTrack motion capture system as the primary source of position and attitude data for experiment recording and visualization. Integration should:
+- Emulate OptiTrack's data format and communication protocol
+- Support typical OptiTrack frame rates (100-360 Hz)
+- Include realistic measurement noise characteristics
+- Handle occasional frame drops and latency
+
+**Rationale:** OptiTrack is the primary position tracking system in the reference testbed.
+
+**Verification Method:** Test - Verify data format and timing matches OptiTrack specifications.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-802: Position Data Sources
+
+**Description:** The system must maintain a clear separation between:
+1. OptiTrack data: Used for ground truth, visualization, and experimental data recording
+2. Onboard sensor data: Used for control and state estimation
+3. GPS simulation: Optional for outdoor flight simulation scenarios
+
+**Rationale:** Clear separation between data sources ensures realistic simulation of onboard control.
+
+**Verification Method:** Test - Verify proper data source usage in different subsystems.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-803: Camera Simulation
+
+**Description:** The simulator should support optional onboard camera simulation for visual-based applications.
+
+**Rationale:** While not primary for position tracking, camera simulation may be useful for future extensions.
+
+**Verification Method:** Test - Verify camera simulation when enabled.
+
+**Priority:** Could-have
+
+**Status:** Proposed
+
+### REQ-FR-804: Attitude Measurement Sources
+
+**Description:** The system must maintain distinct handling of attitude measurements from:
+1. IMU data: Primary source for onboard attitude control and state estimation
+2. OptiTrack attitude data: Used for ground truth, visualization, and experimental validation
+3. Ensure IMU data is used for all onboard calculations even when OptiTrack data is available
+
+**Rationale:** Realistic simulation requires proper separation of onboard sensor data from external tracking systems.
+
+**Verification Method:** Test - Verify proper usage of attitude data sources in different subsystems.
+
+**Priority:** Must-have
 
 **Status:** Proposed
