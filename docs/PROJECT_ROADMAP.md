@@ -10,7 +10,7 @@ This document outlines the development roadmap for the ROS 2 Quadrotor Simulator
 - [x] Establish testing strategy
 - [x] Define requirements management approach
 - [x] Document AscTec Hummingbird emulation approach
-- [ ] Create requirements directory structure
+- [x] Create requirements directory structure
 - [ ] Draft initial high-level requirements
 - [ ] Define core interfaces between system components
 

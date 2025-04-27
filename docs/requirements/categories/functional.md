@@ -18,9 +18,9 @@ This document contains the functional requirements for the ROS 2 Quadrotor Simul
 
 ### REQ-FR-102: Real-time Operation
 
-**Description:** The simulator must operate in real-time, with the ability to maintain a stable simulation frequency matching the hardware's control loop frequency (1000Hz for LLP, 100Hz for HLP).
+**Description:** The simulator must operate in real-time with high precision, maintaining a stable simulation frequency matching the hardware's control loop frequency (1000Hz for LLP, 100Hz for HLP). The system should support pausing, resuming, and running slower than real-time when needed for debugging.
 
-**Rationale:** Real-time operation is essential for the simulator to be used as a drop-in replacement for the real hardware.
+**Rationale:** Real-time operation is essential for the simulator to be used as a drop-in replacement for the real hardware, with debugging capabilities for development.
 
 **Verification Method:** Test - Measure execution timing and jitter under various loads.
 
