@@ -51,8 +51,8 @@ As of April 24, 2025:
    - Delay and synchronization effects
 
 5. **Time Management**: The system must be able to run in:
-   - Strict real-time
-   - Accelerated or slowed time
+   - Strict real-time with high precision
+   - Slower-than-real-time when needed for debugging
    - With pause and resume capability
 
 ## Design Patterns to Use
