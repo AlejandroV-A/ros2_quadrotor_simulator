@@ -217,15 +217,16 @@ This document contains the interface requirements for the ROS 2 Quadrotor Simula
 ### REQ-IR-603: External Tool Integration
 
 **Description:** The simulator must provide interfaces for common research tools:
-- MATLAB/Simulink integration
 - Python scientific stack (NumPy, SciPy, Pandas)
 - Popular optimization frameworks
 - Common plotting libraries (Matplotlib, Plotly)
 
-**Rationale:** Researchers often use external tools for analysis and visualization.
+Additionally, the system should be designed with potential MATLAB/Simulink integration in mind, but this is not a tested requirement due to licensing constraints.
 
-**Verification Method:** Test - Verify integration with each supported tool.
+**Rationale:** Researchers often use external tools for analysis and visualization. While MATLAB/Simulink integration might be valuable, it cannot be a core requirement due to its proprietary nature and licensing requirements.
 
-**Priority:** Should-have
+**Verification Method:** Test - Verify integration with each supported open-source tool. MATLAB/Simulink integration is considered optional and not part of the verification requirements.
+
+**Priority:** Should-have (Open-source tool integration), Could-have (MATLAB/Simulink integration)
 
 **Status:** Proposed
