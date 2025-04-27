@@ -15,6 +15,10 @@ ros2_quadrotor_simulator/
 │   ├── quadrotor_params.yaml       # Quadrotor parameters
 │   ├── sensor_params.yaml          # Sensor configuration
 │   ├── controller_params.yaml      # Controller parameters
+│   ├── research/                   # Research-specific configs
+│   │   ├── metrics.yaml           # Performance metric definitions
+│   │   ├── parameter_sweep.yaml   # Parameter sweep configurations
+│   │   └── plotting.yaml          # Plot configurations
 │   └── trajectories/               # Predefined trajectories
 │       ├── circle.yaml             # Circular trajectory
 │       └── square.yaml             # Square trajectory
@@ -41,6 +45,30 @@ ros2_quadrotor_simulator/
 │   │   ├── __init__.py
 │   │   ├── hardware_bridge.py      # Hardware bridge
 │   │   └── real_time_manager.py    # Real-time manager
+│   ├── research/                   # Research utilities module
+│   │   ├── __init__.py
+│   │   ├── controllers/           # Base classes for custom controllers
+│   │   │   ├── cpp_controller.hpp # C++ controller base class
+│   │   │   └── py_controller.py   # Python controller base class
+│   │   ├── data_import/          # Data import utilities
+│   │   │   ├── csv_loader.py
+│   │   │   ├── mat_loader.py
+│   │   │   └── numpy_loader.py
+│   │   ├── data_export/          # Data export utilities
+│   │   │   ├── csv_exporter.py
+│   │   │   ├── hdf5_exporter.py
+│   │   │   └── rosbag_exporter.py
+│   │   ├── metrics/              # Performance metrics
+│   │   │   ├── tracking_error.py
+│   │   │   ├── control_effort.py
+│   │   │   └── stability.py
+│   │   ├── plotting/             # Plotting utilities
+│   │   │   ├── state_plotter.py
+│   │   │   ├── trajectory_plotter.py
+│   │   │   └── latex_formatter.py
+│   │   └── video/                # Video generation
+│   │       ├── recorder.py
+│   │       └── encoder.py
 │   └── visualization/              # Visualization module
 │       ├── __init__.py
 │       └── visualizer.py           # RViz visualizer
@@ -70,7 +98,23 @@ ros2_quadrotor_simulator/
 │   ├── test_dynamics.py             # Dynamic model tests
 │   ├── test_sensors.py              # Sensor tests
 │   └── test_integration.py          # Integration tests
-└── setup.py                # Python packaging configuration
+├── examples/               # Example implementations
+│   ├── controllers/              # Example controllers
+│   │   ├── lqr_controller.cpp
+│   │   └── mpc_controller.py
+│   ├── trajectories/            # Example trajectories
+│   └── parameter_studies/       # Example parameter studies
+├── tools/                 # Research tools and scripts
+│   ├── batch_sim.py             # Batch simulation runner
+│   ├── param_sweep.py           # Parameter sweep utility
+│   └── data_analysis.py         # Data analysis utilities
+└── data/                  # Data directory
+    ├── trajectories/            # Trajectory data files
+    ├── results/                 # Simulation results
+    │   ├── raw/                # Raw data logs
+    │   ├── processed/          # Processed results
+    │   └── media/             # Generated plots and videos
+    └── benchmarks/             # Benchmark datasets
 ```
 
 ## Notes on the Structure

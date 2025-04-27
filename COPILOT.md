@@ -1,7 +1,7 @@
 # Guide for GitHub Copilot: ROS 2 Quadrotor Simulator
 
 ## Project Context
-This project is a ROS 2-based quadrotor simulator that aims to accurately emulate real-time experiments using an AscTec Hummingbird UAV. The goal is that other ROS 2 nodes cannot distinguish whether they are interacting with a real or simulated system.
+This project is a ROS 2-based quadrotor simulator designed primarily for graduate research in control systems. It accurately emulates real-time experiments using an AscTec Hummingbird UAV, allowing researchers to safely test novel control algorithms before deploying them on real hardware. The simulator ensures that other ROS 2 nodes cannot distinguish whether they are interacting with a real or simulated system.
 
 ## Current Project Status
 As of April 24, 2025:
@@ -11,6 +11,25 @@ As of April 24, 2025:
 - GitHub repository set up with main and develop branches
 - Architecture defined but not yet implemented
 - No code implementation has begun
+
+## Research Objectives
+1. **Control Algorithm Testing**: Provide a safe, reliable platform for testing novel control laws
+   - Easy integration of custom controllers via standardized interfaces
+   - Support for both C++ and Python implementations
+   - Automated parameter sweep capabilities
+   - Built-in stability and performance metrics
+
+2. **Data Collection for Publications**:
+   - High-precision state logging in research-friendly formats (CSV, HDF5)
+   - Built-in plotting utilities for common research metrics
+   - Video recording for conference presentations
+   - ROS bag recording for detailed analysis
+
+3. **Benchmark Environment**:
+   - Reproducible test scenarios
+   - Standard trajectory sets for comparison
+   - Environmental condition presets
+   - Performance metric computation
 
 ## Technical Objectives
 1. **Simulation Transparency**: The code must create a perfect abstraction layer where interfaces (topics, services, actions) are identical to those of a real AscTec Hummingbird quadrotor.
@@ -82,6 +101,23 @@ The project follows a modular structure with separate components for:
 - Control algorithms
 - Interfaces
 - Visualization
+
+## Research Interface Design
+1. **Control Law Integration**:
+   - Standard C++ and Python interfaces for control algorithms
+   - Hot-reloading of control parameters
+   - Support for external optimization frameworks
+
+2. **Data Input**:
+   - Load trajectories from CSV, MAT files
+   - Import control parameters from YAML
+   - Support for custom dynamic constraints
+
+3. **Data Output**:
+   - High-frequency state logging
+   - Performance metric computation
+   - Publication-ready data formats
+   - Video generation utilities
 
 ## Next Development Steps
 1. Set up the ROS 2 package structure
