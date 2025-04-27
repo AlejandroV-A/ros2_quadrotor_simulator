@@ -179,3 +179,53 @@ This document contains the interface requirements for the ROS 2 Quadrotor Simula
 **Priority:** Must-have
 
 **Status:** Proposed
+
+## Research Data Interfaces
+
+### REQ-IR-601: Control Algorithm API
+
+**Description:** The simulator must provide a well-documented API for integrating custom control algorithms with:
+- Base classes for both C++ and Python controllers
+- Standard methods for state observation and control input
+- Hooks for initialization and cleanup
+- Access to simulator parameters and configurations
+
+**Rationale:** Researchers need a clear and consistent way to implement their control algorithms.
+
+**Verification Method:** Test - Verify sample controllers in both C++ and Python.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-IR-602: Scientific Data Formats
+
+**Description:** The simulator must support common scientific data formats:
+- Input: CSV, MAT, NPY/NPZ, YAML
+- Output: CSV, HDF5, MAT, ROS bags
+- Plot export: PDF, PNG, SVG with LaTeX-compatible labels
+- Video export: MP4, AVI with configurable codecs and quality
+
+**Rationale:** Integration with scientific tools and publication workflows is essential.
+
+**Verification Method:** Test - Verify all format conversions work correctly.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-IR-603: External Tool Integration
+
+**Description:** The simulator must provide interfaces for common research tools:
+- MATLAB/Simulink integration
+- Python scientific stack (NumPy, SciPy, Pandas)
+- Popular optimization frameworks
+- Common plotting libraries (Matplotlib, Plotly)
+
+**Rationale:** Researchers often use external tools for analysis and visualization.
+
+**Verification Method:** Test - Verify integration with each supported tool.
+
+**Priority:** Should-have
+
+**Status:** Proposed
