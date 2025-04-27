@@ -78,6 +78,41 @@ This document contains the interface requirements for the ROS 2 Quadrotor Simula
 
 **Status:** Proposed
 
+### REQ-IR-203: OptiTrack Interface
+
+**Description:** The simulator must provide:
+1. Interface compatibility with OptiTrack's NatNet protocol (or equivalent ROS 2 bridge)
+2. Topics for streaming motion capture data at configurable frame rates (100-360 Hz)
+3. Separate topics for:
+   - Ground truth position and attitude data for recording/visualization
+   - Raw motion capture markers data (if needed for advanced applications)
+
+**Rationale:** OptiTrack integration is essential for matching the reference testbed setup.
+
+**Verification Method:** Test - Verify compatibility with OptiTrack data formats and protocols.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-IR-204: Measurement Data Segregation
+
+**Description:** The system must provide clearly separated interfaces for:
+1. OptiTrack measurements: `/optitrack/pose`, `/optitrack/markers` (ground truth)
+2. IMU measurements: `/quadrotor/sensors/imu` (onboard control)
+3. Camera data: `/quadrotor/sensors/camera` (optional)
+4. GPS data: `/quadrotor/sensors/gps` (optional)
+
+Each interface must properly identify its data source and intended use through appropriate metadata and documentation.
+
+**Rationale:** Clear separation of measurement sources prevents confusion and ensures proper data usage.
+
+**Verification Method:** Inspection - Review interface definitions and documentation.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
 ## User Interfaces
 
 ### REQ-IR-301: Command Line Interface

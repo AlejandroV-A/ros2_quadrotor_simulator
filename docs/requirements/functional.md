@@ -279,3 +279,63 @@ This document contains the functional requirements for the ROS 2 Quadrotor Simul
 **Priority:** Must-have
 
 **Status:** Proposed
+
+## Position and Attitude Tracking
+
+### REQ-FR-801: OptiTrack Integration
+
+**Description:** The simulator must support OptiTrack motion capture system as the primary source of position and attitude data for experiment recording and visualization. Integration should:
+- Emulate OptiTrack's data format and communication protocol
+- Support typical OptiTrack frame rates (100-360 Hz)
+- Include realistic measurement noise characteristics
+- Handle occasional frame drops and latency
+
+**Rationale:** OptiTrack is the primary position tracking system in the reference testbed.
+
+**Verification Method:** Test - Verify data format and timing matches OptiTrack specifications.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-802: Position Data Sources
+
+**Description:** The system must maintain a clear separation between:
+1. OptiTrack data: Used for ground truth, visualization, and experimental data recording
+2. Onboard sensor data: Used for control and state estimation
+3. GPS simulation: Optional for outdoor flight simulation scenarios
+
+**Rationale:** Clear separation between data sources ensures realistic simulation of onboard control.
+
+**Verification Method:** Test - Verify proper data source usage in different subsystems.
+
+**Priority:** Must-have
+
+**Status:** Proposed
+
+### REQ-FR-803: Camera Simulation
+
+**Description:** The simulator should support optional onboard camera simulation for visual-based applications.
+
+**Rationale:** While not primary for position tracking, camera simulation may be useful for future extensions.
+
+**Verification Method:** Test - Verify camera simulation when enabled.
+
+**Priority:** Could-have
+
+**Status:** Proposed
+
+### REQ-FR-804: Attitude Measurement Sources
+
+**Description:** The system must maintain distinct handling of attitude measurements from:
+1. IMU data: Primary source for onboard attitude control and state estimation
+2. OptiTrack attitude data: Used for ground truth, visualization, and experimental validation
+3. Ensure IMU data is used for all onboard calculations even when OptiTrack data is available
+
+**Rationale:** Realistic simulation requires proper separation of onboard sensor data from external tracking systems.
+
+**Verification Method:** Test - Verify proper usage of attitude data sources in different subsystems.
+
+**Priority:** Must-have
+
+**Status:** Proposed
