@@ -17,7 +17,7 @@ This document outlines the development roadmap for the ROS 2 Quadrotor Simulator
 ### 1.2 Development Environment Setup (April-May 2025)
 - [x] Set up development environment documentation
 - [x] Create Docker containers for development
-- [ ] Configure CI/CD pipeline with GitHub Actions
+- [x] Configure CI/CD pipeline with GitHub Actions
 - [x] Set up code quality tools and linters
 - [x] Create contributing guidelines and templates
 - [x] Establish branching strategy and workflow

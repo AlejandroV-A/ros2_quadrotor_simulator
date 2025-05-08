@@ -2,36 +2,35 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  build_and_test:
+  build-and-test:
     runs-on: ubuntu-latest
-    container:
-      image: ros:humble
+
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get install -y python3-pip
-          pip3 install pytest pytest-ros
-          
-      - name: Build
-        run: |
-          . /opt/ros/humble/setup.sh
-          mkdir -p /workspace/src
-          cp -r $GITHUB_WORKSPACE /workspace/src/
-          cd /workspace
-          colcon build --symlink-install
-          
-      - name: Test
-        run: |
-          . /opt/ros/humble/setup.sh
-          . /workspace/install/setup.sh
-          cd /workspace
-          colcon test
-          colcon test-result --verbose
+    - uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: docker compose build dev
+
+    - name: Run linters
+      run: |
+        docker compose run --rm dev bash -c "
+          python3 -m pylint ros2_quadrotor_simulator &&
+          find . -name '*.cpp' -o -name '*.hpp' | xargs clang-format --dry-run --Werror"
+
+    - name: Build ROS package
+      run: |
+        docker compose run --rm dev bash -c "
+          . /opt/ros/humble/setup.sh &&
+          colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release"
+
+    - name: Run tests
+      run: |
+        docker compose run --rm dev bash -c "
+          . /opt/ros/humble/setup.sh &&
+          . install/setup.sh &&
+          python3 -m pytest test/slash_tests"
