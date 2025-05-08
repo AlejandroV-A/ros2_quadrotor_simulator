@@ -6,8 +6,13 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/ros2_ws/src/ros2_quadrotor_simulator
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - type: bind
+        source: .
+        target: /ros2_ws/src/ros2_quadrotor_simulator
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+        read_only: false
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
