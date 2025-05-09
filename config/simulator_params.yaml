@@ -1,0 +1,13 @@
+/**:
+  ros__parameters:
+    # Simulation parameters
+    update_rate: 100.0  # Hz
+    gravity: 9.81       # m/s^2
+
+    # Quadrotor parameters
+    mass: 1.0          # kg
+    arm_length: 0.25   # m
+
+    # Initial state
+    initial_position: [0.0, 0.0, 0.0]  # [x, y, z] in meters
+    initial_orientation: [0.0, 0.0, 0.0]  # [roll, pitch, yaw] in radians
